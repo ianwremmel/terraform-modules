@@ -169,11 +169,8 @@ resource "aws_iam_group_policy_attachment" "this" {
   policy_arn = aws_iam_policy.this.arn
 }
 
-resource "aws_iam_group_membership" "this" {
-  name  = aws_iam_group.this.name
-  group = aws_iam_group.this.name
-  users = [
-    for user in aws_iam_user.this :
-    user.name
-  ]
+resource "aws_iam_user_group_membership" "this" {
+  for_each = toset(var.humans)
+  user     = aws_iam_user.this[each.key].name
+  groups   = [aws_iam_group.this.name]
 }
