@@ -11,7 +11,7 @@ resource "aws_iam_user" "this" {
   }
 }
 
-resource "aws_iam_login_profile" "this" {
+resource "aws_iam_user_login_profile" "this" {
   for_each = toset(var.humans)
 
   # this lookup that effectively returns the lookup key ensures the login
