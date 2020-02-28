@@ -12,6 +12,7 @@ data "aws_route53_zone" "this" {
 resource "aws_route53_record" "this" {
   zone_id = data.aws_route53_zone.this.zone_id
 
+  name = data.aws_route53_zone.this.name
   type = "MX"
   ttl  = "300"
 
