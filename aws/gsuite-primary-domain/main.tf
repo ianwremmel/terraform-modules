@@ -1,6 +1,6 @@
 locals {
   all_records = concat(var.mx_server_addresses, [{
-    name     = var.verification
+    name     = var.verification_code
     priority = "15"
   }])
 }
