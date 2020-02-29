@@ -14,7 +14,7 @@ resource "aws_route53_record" "this" {
 
   name = data.aws_route53_zone.this.name
   type = "MX"
-  ttl  = "300"
+  ttl  = var.ttl
 
   records = [
     for address in toset(local.all_records) :

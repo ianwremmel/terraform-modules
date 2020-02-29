@@ -18,6 +18,11 @@ variable "cname_target" {
   type    = string
 }
 
+variable "ttl" {
+  default = "300"
+  type    = string
+}
+
 variable "zone_id" {
   type = string
 }
