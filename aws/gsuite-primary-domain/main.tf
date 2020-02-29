@@ -20,5 +20,4 @@ resource "aws_route53_record" "this" {
     for address in toset(local.all_records) :
     "${address.priority} ${address.name}"
   ]
-
 }
