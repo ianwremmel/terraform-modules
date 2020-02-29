@@ -31,5 +31,8 @@ resource "aws_route53_record" "dkim" {
   type = "TXT"
   ttl  = var.ttl
 
-  records = [var.dkim_value]
+  records = [
+    for dkim_value_chunk in chunklist(split("", var.dkim_value), 255) :
+    join("", dkim_value_chunk)
+  ]
 }
