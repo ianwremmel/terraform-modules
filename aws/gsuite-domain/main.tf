@@ -1,5 +1,5 @@
 locals {
-  all_records = concat(var.mx_server_addresses, [{
+  all_records = var.verification_code == null ? var.mx_server_addresses : concat(var.mx_server_addresses, [{
     name     = var.verification_code
     priority = "15"
   }])
