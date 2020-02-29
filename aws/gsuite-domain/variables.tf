@@ -3,7 +3,8 @@ variable "mx_server_addresses" {
 }
 
 variable "verification_code" {
-  type = string
+  default = null
+  type    = string
 }
 
 variable "ttl" {
