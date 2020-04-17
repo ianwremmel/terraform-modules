@@ -1,5 +1,5 @@
-resource "random_id" "this" {
-  byte_length = 6
+locals {
+  enable = var.enable && length(var.chambers) > 0
 }
 
 data "aws_kms_key" "this" {
@@ -9,7 +9,8 @@ data "aws_kms_key" "this" {
 module "this" {
   source = "../role-grant"
 
-  role = var.role
+  enable = local.enable
+  role   = var.role
   statements = [{
     actions = ["ssm:GetParameters", "ssm:GetParametersByPath"]
     resources = [

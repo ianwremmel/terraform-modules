@@ -1,3 +1,8 @@
+variable "enable" {
+  default = true
+  type    = bool
+}
+
 variable "role" {
   type = string
 }
