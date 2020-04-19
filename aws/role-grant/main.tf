@@ -1,7 +1,7 @@
 locals {
   count       = local.enable ? 1 : 0
   enable      = var.enable && length(var.statements) > 0
-  policy_json = var.role == null ? data.aws_iam_policy_document.this[0].json : var.role
+  policy_json = var.policy == null ? data.aws_iam_policy_document.this[0].json : var.policy
 }
 
 data "aws_iam_policy_document" "this" {
