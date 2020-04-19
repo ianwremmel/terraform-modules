@@ -5,7 +5,7 @@ locals {
 }
 
 data "aws_iam_policy_document" "this" {
-  count = var.role == null ? local.count : 0
+  count = var.policy == null ? local.count : 0
 
   dynamic "statement" {
     for_each = var.statements
