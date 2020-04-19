@@ -1,5 +1,5 @@
 locals {
-  enable      = var.enable && (length(var.statements) > 0 || var.policy != null)
+  enable      = var.enable
   policy_json = var.policy == null ? data.aws_iam_policy_document.this.json : var.policy
 }
 
