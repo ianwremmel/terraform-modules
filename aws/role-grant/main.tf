@@ -1,12 +1,9 @@
 locals {
-  create_policy_document = local.enable && var.policy != null
-  enable                 = var.enable && length(var.statements) > 0
-  policy_json            = local.create_policy_document ? data.aws_iam_policy_document.this[0].json : var.policy
+  enable      = var.enable && (length(var.statements) > 0 || var.policy != null)
+  policy_json = var.policy == null ? data.aws_iam_policy_document.this.json : var.policy
 }
 
 data "aws_iam_policy_document" "this" {
-  count = local.create_policy_document ? 1 : 0
-
   dynamic "statement" {
     for_each = var.statements
 
