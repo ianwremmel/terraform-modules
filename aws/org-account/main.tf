@@ -63,8 +63,7 @@ resource "aws_cloudformation_stack" "this" {
   template_body = file("${path.module}/stack.yml")
   capabilities  = ["CAPABILITY_IAM"]
   tags = {
-    Description = "This stack wires up a handful of things that would have been expected AWS defaults. For example, it makes sure API Gateway can acutally write logs."
-    ManagedBy   = "Terraform"
+    ManagedBy = "Terraform"
   }
 }
 
