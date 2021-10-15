@@ -57,3 +57,17 @@ resource "aws_iam_user_policy_attachment" "this" {
   user       = split("/", data.aws_arn.this[each.key].resource)[1]
   policy_arn = aws_iam_policy.this[0].arn
 }
+
+resource "aws_cloudformation_stack" "this" {
+  name          = "the-missing-defaults"
+  template_body = file("${path.module}/stack.yml")
+  capabilities  = ["CAPABILITY_IAM"]
+  tags = {
+    Description = "This stack wires up a handful of things that would have been expected AWS defaults. For example, it makes sure API Gateway can acutally write logs."
+    ManagedBy   = "Terraform"
+  }
+}
+
+output "api_gateway_cloudwatch_log_role_arn" {
+  value = aws_cloudformation_stack.this.outputs.ApiUrl
+}
